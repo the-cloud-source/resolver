@@ -36,7 +36,7 @@ func TestLookupNS(t *testing.T) {
 			}
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for i := 0; i < len(lookupGmailNSTests); i++ {
 		tt := lookupGmailNSTests[i]
 		nss, err := r.LookupNS(context.Background(), tt.name)
@@ -74,7 +74,7 @@ func TestLookupTXT(t *testing.T) {
 			}
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for i := 0; i < len(lookupGmailTXTTests); i++ {
 		tt := lookupGmailTXTTests[i]
 		txts, err := r.LookupTXT(context.Background(), tt.name)
@@ -112,7 +112,7 @@ func TestLookupAddr(t *testing.T) {
 			}
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for _, ip := range lookupGooglePublicDNSAddrTests {
 		names, err := r.LookupAddr(context.Background(), ip)
 		if err != nil {
@@ -145,7 +145,7 @@ func TestLookupLongTXT(t *testing.T) {
 			}
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	txts, err := r.LookupTXT(context.Background(), "golang.rsc.io")
 	if err != nil {
 		t.Fatal(err)
@@ -180,7 +180,7 @@ func TestLookupIP(t *testing.T) {
 			}
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for _, tt := range lookupGoogleIPTests {
 		ips, err := r.LookupIP(context.Background(), tt.network, tt.name)
 		if err != nil {
@@ -227,7 +227,7 @@ func TestLookupCNAME(t *testing.T) {
 			return []net.IP{net.ParseIP("127.8.8.8"), net.ParseIP("169.254.0.1")}, nil
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for i := 0; i < len(lookupCNAMETests); i++ {
 		tt := lookupCNAMETests[i]
 		cname, err := r.LookupCNAME(context.Background(), tt.name)
@@ -271,7 +271,7 @@ func TestLookupMX(t *testing.T) {
 			return mxs, nil
 		},
 	}
-	r := NewMemResolver(f)
+	r := NewMemoryResolver(f)
 	for i := 0; i < len(lookupMXTests); i++ {
 		tt := lookupMXTests[i]
 		mxs, err := r.LookupMX(context.Background(), tt.name)

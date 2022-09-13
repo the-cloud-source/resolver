@@ -428,9 +428,9 @@ func (r *MemResolver) Dial(ctx context.Context, network, address string) (net.Co
 	return h.Dial(ctx, network, address)
 }
 
-// MemResolver returns an in-memory resolver that can override golang Lookup
+// NewMemoryResolver returns an in-memory resolver that can override golang Lookup
 // functions.
-func NewMemResolver(r *MemResolver) *net.Resolver {
+func NewMemoryResolver(r *MemResolver) *net.Resolver {
 	if r == nil {
 		r = &MemResolver{}
 	}
